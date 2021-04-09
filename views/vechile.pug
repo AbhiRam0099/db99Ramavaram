@@ -2,17 +2,14 @@ extends layout
 
 block content
    h1= title
-   -  let vechiles=[{vechilename:"Audi",model:"A8",classification:"sports",price:50000},{vechilename:"Lambogini",model:"s6",classification:"sports",price:80000},{vechilename:"BMW",model:"500d",classification:"sports",price:25000}]
+   - let vechiles=results
    div(class="container-fluid mt-3")
    div(class="row")
-    each vechile,index in vechiles
-         div(class="col-sm-4 bg-info m-1 p-3" style=("font-weight:bolder")  onclick=`buy(${index})`) #{vechiles.vechilename} - #{vechiles.model} - #{vechiles.classification} - #{vechiles.price}
+    each vehicle,index in vechiles
+      div(class="col-sm-4 "  onclick=`buy(${index})`) - #{vehicle.vechilename} - #{vehicle.model} - #{vehicle.classification} - #{vehicle.price}
    script.
      
       function buy(itemNo)
       {
         alert(`You purchased Item ${itemNo+1}`)
       }
-
-
-     

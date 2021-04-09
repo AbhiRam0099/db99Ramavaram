@@ -3,7 +3,7 @@ var vechile = require('../models/vechile');
 // List of all Fishs
 exports.vechile_list = async function (req, res) {
     try {
-        thevechile = await vechile.find();
+        thevechile = await vechiles.find();
         res.send(thevechile);
     }
     catch (err) {
@@ -14,7 +14,7 @@ exports.vechile_list = async function (req, res) {
 };
 // for a specific Fish.
 exports.vechile_detail = function (req, res) {
-    res.send('NOT IMPLEMENTED: Fish detail: ' + req.params.id);
+    res.send('NOT IMPLEMENTED: vechile detail: ' + req.params.id);
 };
 // Handle Fish create on POST.
 exports.vechile_create_post = async function (req, res) {
@@ -24,8 +24,8 @@ exports.vechile_create_post = async function (req, res) {
     // Even though bodies can be in many different formats, we will be picky
     // and require that it be a json object
     // {"costumetype":"goat", "cost":12, "size":"large"}
-    document.fishname = req.body.vechilename;
-    document.habitat = req.body.model;
+    document.vechilename = req.body.vechilename;
+    document.model = req.body.model;
     document.classification = req.body.classification;
     document.price = req.body.price;
     try {
@@ -50,12 +50,24 @@ exports.vechile_update_put = function (req, res) {
 // Handle a show all view
 exports.vechile_view_all_Page = async function (req, res) {
     try {
-        thevechile = await vechile.find();
+        theVechile = await vechile.find();
         console.log("njfndw")
-        res.render('vechile', { title: 'vechile Search Results', results: thevechile });
+        res.render('vechile', { title: 'vechile Search Results', results: theVechile });
     }
     catch (err) {
         res.send(`{"error": ${err}}`)
         res.status(500);
+    }
+};
+
+// for a specific Costume.
+exports.vechile_detail = async function(req, res) {
+    console.log("detail"  + req.params.id)
+    try {
+        result = await vechile.findById( req.params.id)
+        res.send(result)
+    } catch (error) {
+        res.status(500)
+        res.send(`{"error": document for id ${req.params.id} not found`);
     }
 };

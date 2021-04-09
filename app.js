@@ -14,6 +14,7 @@ var usersRouter = require('./routes/users');
 var mydataRouter = require('./routes/mydata');
 var computeRouter = require('./routes/compute');
 var resourceRouter = require('./routes/resource');
+var vechileRouter=require('./routes/vechile');
 // We can seed the collection if needed on server start
 async function recreateDB(){
   // Delete everything
@@ -60,6 +61,7 @@ app.use('/users', usersRouter);
 app.use('/mydata', mydataRouter);
 app.use('/compute', computeRouter);
 app.use('/resource', resourceRouter);
+app.use('/vechile',vechileRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
