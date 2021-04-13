@@ -8,14 +8,14 @@ module.exports = router;
 
 
 /* GET detail vechile page */
-router.get('/detail', vechile_controlers.vechile_view_one_Page);
+router.get('/detail', vehicle_controlers.vechile_view_one_Page);
 
 /* GET create vechile page */
-router.get('/create', vechile_controlers.vechile_create_Page);
+router.get('/create', vehicle_controlers.vechile_create_Page);
 
 /* GET create update page */
-router.get('/update', vechile_controlers.vechile_update_Page);
+router.get('/update', vehicle_controlers.vechile_update_Page);
 
 /* GET create vechile page */
-router.get('/delete', vechile_controlers.vechile_delete_Page);
+router.get('/delete', vehicle_controlers.vechile_delete_Page);
 
