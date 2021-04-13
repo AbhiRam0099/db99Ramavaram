@@ -6,7 +6,7 @@ block content
    div(class="container-fluid mt-3")
    div(class="row")
     each vehicle,index in vechiles
-      div(class="col-sm-4 "  onclick=`buy(${index})`) - #{vehicle.vechilename} - #{vehicle.model} - #{vehicle.classification} - #{vehicle.price}
+      div(class="col-sm-4 "  onclick=`buy(${index})`) - #{vehicle._id} - #{vehicle.vechilename} - #{vehicle.model} - #{vehicle.classification} - #{vehicle.price}
    script.
      
       function buy(itemNo)

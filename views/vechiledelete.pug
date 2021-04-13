@@ -1,0 +1,57 @@
+extends layout
+
+block content
+  h1= title
+
+  if (toShow == null)
+    h2 No instance to delete
+  else
+    - let vechile = toShow._id
+    - let vechilename = toShow.vechilename
+    - let model = toShow.model
+    - let classification = toShow.classification
+    - let price = toShow.price
+    - let actionid = "/resource/vechile/" + fish
+    script let actionid = "#{actionid}"
+    div
+      div.row
+        div(class='costumeAttr mr-3') vechile ID is:
+        div #{fish}
+      div.row
+        div(class='costumeAttr mr-3') vechile Name is:
+        div #{fishname}
+      div.row
+        div(class='costumeAttr mr-3') vechile model is:
+        div #{habitat}
+      div.row
+        div(class='costumeAttr mr-3') vechile Classification is:
+        div #{classification}
+      div.row
+        div(class='costumeAttr mr-3') vechile Price is:
+        div #{price}
+
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+
+  script.
+    function cancel() {
+      // Go back to the home page for the costume collection
+      window.location.href='/vechile'
+    }
+  script.
+    function deleteOnid() {
+      console.log("starting delete")
+      // delete first
+      fetch(actionid, {
+        method: 'DELETE'      // Don't need a body for the delete
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Delete succeded")
+        window.location.href='/vechile'
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Delete failed " + error )
+      });
+    }

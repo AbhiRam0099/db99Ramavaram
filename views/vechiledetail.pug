@@ -1,0 +1,27 @@
+  
+extends layout
+
+block content
+  h1(id="myTitle")= title
+
+  - let vechileid = toShow._id
+  - let vechilename = toShow.vechilename
+  - let classification = toShow.classification
+  - let model = toShow.model
+  - let price = toShow.price
+  div
+    div.row
+      div(class='costumeAttr mr-3') vechile ID is:
+      div(class='values spcl') #{vechileid}
+    div.row
+      div(class='costumeAttr mr-3') vechile Name is:
+      div(class="values") #{vechilename}
+    div.row
+      div(class='costumeAttr mr-3') vechile Classification is:
+      div(class="values") #{classification}
+    div.row
+      div(class='costumeAttr mr-3') vechile model is:
+      div(class="values") #{model}
+    div.row
+      div(class='costumeAttr mr-3') vechile Cost is:
+      div(class="values") #{price}

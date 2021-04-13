@@ -51,7 +51,7 @@ exports.vechile_update_put = function (req, res) {
 exports.vechile_view_all_Page = async function (req, res) {
     try {
         theVechile = await vechile.find();
-        console.log("njfndw")
+        console.log(theVechile)
         res.render('vechile', { title: 'vechile Search Results', results: theVechile });
     }
     catch (err) {
@@ -71,3 +71,37 @@ exports.vechile_detail = async function(req, res) {
         res.send(`{"error": document for id ${req.params.id} not found`);
     }
 };
+
+//Handle Costume update form on PUT.
+exports.vechile_update_put = async function(req, res) {
+    console.log(`update on id ${req.params.id} with body ${JSON.stringify(req.body)}`)
+    try {
+        let toUpdate = await vechile.findById( req.params.id)
+        // Do updates of properties
+        if(req.body.vechilename) toUpdate.vechilename = req.body.vechilename;
+        if(req.body.model) toUpdate.model = req.body.model;
+        if(req.body.price) toUpdate.price = req.body.price;
+        if(req.body.classification) toUpdate.classification = req.body.classification;
+        let result = await toUpdate.save();
+        console.log("Sucess " + result)
+        res.send(result)
+    } catch (err) {
+        res.status(500)
+        res.send(`{"error": ${err}: Update for id ${req.params.id} failed`);
+    }
+};
+
+// Handle Costume delete on DELETE.
+exports.vechile_delete = async function(req, res) {
+    console.log("delete "  + req.params.id)
+    try {
+        result = await vechile.findByIdAndDelete( req.params.id)
+        console.log("Removed " + result)
+        res.send(result)
+    } catch (err) {
+        res.status(500)
+        res.send(`{"error": Error deleting ${err}}`);
+    }
+};
+
+
