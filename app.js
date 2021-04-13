@@ -7,7 +7,7 @@ const connectionString = process.env.MONGO_CON
 mongoose = require('mongoose');
 mongoose.connect(connectionString,
 {useNewUrlParser: true, useUnifiedTopology: true});
-var vechile = require("./models/vechile");
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -15,6 +15,7 @@ var mydataRouter = require('./routes/mydata');
 var computeRouter = require('./routes/compute');
 var resourceRouter = require('./routes/resource');
 var vechileRouter=require('./routes/vechile');
+var vechile = require("./models/vechile");
 // We can seed the collection if needed on server start
 async function recreateDB(){
   // Delete everything
