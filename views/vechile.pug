@@ -1,16 +1,32 @@
 extends layout
 
 block content
-   h1= title
-   - let vechiles=results
-   div(class="container-fluid mt-3")
-    div(class="row" m-1)
-      each vehicle,index in vechiles
-        - let destination = `dispatch(\"/vechile/update?id=${vehicle._id}\")`
-        div(class="col-sm-4 "  onclick=`buy(${index})`) - #{vehicle._id} - #{vehicle.vechilename} - #{vehicle.model} - #{vehicle.classification} - #{vehicle.price}
-          button.btn( class="btn-primary ml-1", onclick= destination) Update 
-   script.
-     
+  h1= title
+  - let vechiles=results
+  - let destinationcreate = `dispatchCreate(\"/vechile/create\")`
+  div(class="container-fluid")
+    button.btn( class="btn-primary ml-1 btn-lg", onclick= destinationcreate) Create
+  div(class="row m-1")
+   
+    each vechile,index in vechiles
+      - let destinationupdate = `dispatch(\"/vechile/update?id=${vechile._id}\")`
+      -let destinationdetail =   `dispatch(\"/vechile/detail?id=${vechile._id}\")`
+      - let destinationdelete = `dispatchDelete(\"/vechile/delete?id=${vechile._id}\")`
+        div(class="col-sm-4  m-1" style=("font-weight:bolder")) #{vechile.vechilename} - #{vechile.model} - #{vechile.classification} - #{vechile.price}
+          button.btn( class="btn-success ml-1", onclick= destinationdetail) Detail
+          button.btn( class="btn-info ml-1", onclick= destinationupdate) Update
+          button.btn( class="btn-danger ml-1", onclick= destinationdelete) Delete
+  script.
       function dispatch(path){
-          window.location.href=path
-        }
+      window.location.href=path
+      }
+      function buy(itemNo)
+      {
+        alert(`You purchased Item ${itemNo+1}`)
+      }
+      function dispatchCreate(path){
+        window.location.href=path
+      }
+      function dispatchDelete(path){
+        window.location.href=path
+      }      
